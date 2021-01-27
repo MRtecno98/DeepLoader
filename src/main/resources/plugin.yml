@@ -1,0 +1,5 @@
+name: ${project.name}
+version: ${project.version}
+main: ${main-class}
+author: MRtecno98
+load: STARTUP

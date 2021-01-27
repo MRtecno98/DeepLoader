@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>me.mrtecno</groupId>
+	<artifactId>deeploader</artifactId>
+	<version>0.0.1-EXP</version>
+	<name>DeepLoader</name>
+	<description>Dynamically downloads and adds dependencies to the classpath</description>
+	<inceptionYear>2021</inceptionYear>
+	
+	<properties>
+		<main-class>me.mrtecno.loader.DeepLoader</main-class>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+	</properties>
+	
+	<licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://drop.mrtecno.online/license/mit</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+	
+	<repositories>
+		<repository>
+			<id>papermc</id>
+			<url>https://papermc.io/repo/repository/maven-public/</url>
+		</repository>
+	</repositories>
+	
+	<developers>
+		<developer>
+			<id>mrtecno</id>
+			<name>MRtecno98</name>
+			<email>mr.tecno98@gmail.com</email>
+			<url>http://github.com/MRtecno98</url>
+			
+			<roles>
+				<role>developer</role>
+			</roles>
+			
+			<timezone>Europe/Rome</timezone>
+			
+			<properties>
+				<telegram>https://t.me/MRtecno98</telegram>
+				<picUrl>https://drop.mrtecno.online/propic.png</picUrl>
+			</properties>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<!--Spigot API -->
+		<dependency>
+			<groupId>com.destroystokyo.paper</groupId>
+			<artifactId>paper-api</artifactId>
+			<version>1.13.2-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Lombok annotations -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>clean package</defaultGoal>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.16</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By>MRtecno98</Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>.</directory>
+							<includes>
+								<include>dependency-reduced-pom.xml</include>
+								<include>pom.xml.versionsBackup</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
